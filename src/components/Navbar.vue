@@ -9,13 +9,31 @@
         ></b-img></b-navbar-brand
     ></router-link>
 
-    <b-navbar-nav class="ml-auto">
-      <b-form-input
-        v-model="searchedMovie"
-        @keyup.enter="searchMovie"
-        placeholder="Rechercher un film"
-      ></b-form-input>
-    </b-navbar-nav>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav class="ms-auto">
+        <b-input-group>
+          <b-input
+            v-model="searchedMovie"
+            @keyup.enter="searchMovie"
+            placeholder="Rechercher un film"
+          >
+          </b-input>
+          <b-input-group-append>
+            <b-button @click="searchMovie" variant="secondary">
+              <b-icon-search> </b-icon-search>
+            </b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </b-navbar-nav>
+
+      <b-navbar-nav>
+        <router-link to="/connection"
+          ><b-nav-item>Connexion</b-nav-item></router-link
+        >
+      </b-navbar-nav>
+    </b-collapse>
   </b-navbar>
 </template>
 
