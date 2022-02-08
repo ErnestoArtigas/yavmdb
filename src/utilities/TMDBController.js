@@ -34,11 +34,11 @@ export class TMDBController {
     });
   }
 
-  async getMovieByName() {
+  async getMovieByName(movieTitle) {
     return new Promise((resolve, reject) => {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${this.apiKey}&language=fr-FR`
+          `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}&query=${movieTitle}&language=fr-FR`
         )
         .then((response) => {
           let movieArray = [];

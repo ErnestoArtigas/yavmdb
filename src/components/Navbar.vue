@@ -15,13 +15,13 @@
       <b-navbar-nav class="ms-auto">
         <b-input-group>
           <b-input
-            v-model="searchedMovie"
-            @keyup.enter="searchMovie"
+            v-model="searchQuery"
+            @keyup.enter="goToSearchResults"
             placeholder="Rechercher un film"
           >
           </b-input>
           <b-input-group-append>
-            <b-button @click="searchMovie" variant="secondary">
+            <b-button @click="goToSearchResults" variant="secondary">
               <b-icon-search> </b-icon-search>
             </b-button>
           </b-input-group-append>
@@ -42,13 +42,12 @@ export default {
   name: "Navbar",
   data() {
     return {
-      searchedMovie: "",
-      data: "<b-icon-search></b-icon-search>",
+      searchQuery: "",
     };
   },
   methods: {
-    searchMovie() {
-      console.log(this.searchedMovie);
+    goToSearchResults() {
+      this.$router.push(`/search/${this.searchQuery}`);
     },
   },
 };
