@@ -3,19 +3,22 @@ import VueRouter from "vue-router";
 
 import Home from "../views/Home.vue";
 import SearchResults from "../views/SearchResults.vue";
+import SearchMovie from "../views/SearchMovie.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
     component: Home,
   },
   {
     path: "/search/:query",
-    name: "SearchResults",
     component: SearchResults,
+  },
+  {
+    path: "/movie/:id",
+    component: SearchMovie,
   },
 ];
 

@@ -1,14 +1,17 @@
 <template>
   <div class="search-results">
-    <h1>{{ searchQuery }}</h1>
-    <b-card-group deck>
-      <MovieCard
-        v-for="movie in moviesArray"
-        :key="movie.id"
-        :movie="movie"
-        style="margin-bottom: 15px"
-      ></MovieCard>
-    </b-card-group>
+    <b-row class="mb-5">
+      <h1>Recherche : {{ searchQuery }}</h1>
+
+      <div class="grid">
+        <MovieCard
+          v-for="movie in moviesArray"
+          :key="movie.id"
+          :movie="movie"
+          style="margin-bottom: 15px"
+        ></MovieCard>
+      </div>
+    </b-row>
   </div>
 </template>
 
@@ -29,23 +32,29 @@ export default {
       moviesArray: [],
     };
   },
-  watch: {
-    $route(to) {
-      this.searchQuery = to.params.query;
-      tmdbControllerInstance
-        .getMovieByName(this.searchQuery)
-        .then((data) => {
-          this.moviesArray = data;
-          this.moviesArray.forEach((element) => {
-            console.log(element.poster);
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+  mounted() {
+    this.searchQuery = this.$route.params.query;
+    tmdbControllerInstance
+      .getMovieByName(this.searchQuery)
+      .then((data) => {
+        this.moviesArray = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
 
-<style></style>
+<style>
+.grid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1.5rem;
+}
+.grid > * {
+  width: 100%;
+  max-width: 20rem;
+}
+</style>

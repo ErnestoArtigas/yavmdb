@@ -18,6 +18,10 @@
 	- v-model quand on va écrire dans le formulaire le nom de l'utilisateur, stocké dans variable interne / store.
 - Watch
 	- avec les v-rating pour noter un film.
+- Slots
+	- Header de la carte : template #header
+- Gestion évenementielle inter-composants
+	- Emit
 
 ## Project setup
 ```
