@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { Movie } from "../utilities/Movie";
+import { Movie } from "@/utilities/Movie";
 
 export default {
   name: "MovieCard",

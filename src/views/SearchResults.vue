@@ -1,18 +1,15 @@
 <template>
-  <div class="search-results">
-    <b-row class="mb-5">
-      <h1>Recherche : {{ searchQuery }}</h1>
-
-      <div class="grid">
-        <MovieCard
-          v-for="movie in moviesArray"
-          :key="movie.id"
-          :movie="movie"
-          style="margin-bottom: 15px"
-        ></MovieCard>
-      </div>
-    </b-row>
-  </div>
+  <b-row class="mb-5">
+    <h1>Recherche : {{ searchQuery }}</h1>
+    <div class="grid">
+      <MovieCard
+        v-for="movie in moviesArray"
+        :key="movie.id"
+        :movie="movie"
+        style="margin-bottom: 15px"
+      ></MovieCard>
+    </div>
+  </b-row>
 </template>
 
 <script>
@@ -35,7 +32,7 @@ export default {
   mounted() {
     this.searchQuery = this.$route.params.query;
     tmdbControllerInstance
-      .getMovieByName(this.searchQuery)
+      .getMoviesByName(this.searchQuery)
       .then((data) => {
         this.moviesArray = data;
       })

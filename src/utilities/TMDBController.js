@@ -1,5 +1,6 @@
 import axios from "axios";
-import { Movie } from "./Movie";
+import { Movie } from "@/utilities/Movie";
+import { MovieDetailed } from "@/utilities/MovieDetailed";
 
 export class TMDBController {
   constructor() {
@@ -34,7 +35,7 @@ export class TMDBController {
     });
   }
 
-  async getMovieByName(movieTitle) {
+  async getMoviesByName(movieTitle) {
     return new Promise((resolve, reject) => {
       axios
         .get(
@@ -55,6 +56,32 @@ export class TMDBController {
             );
           }
           resolve(movieArray);
+        })
+        .catch(function (error) {
+          reject(error);
+        });
+    });
+  }
+
+  async getMovieById(movieId) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${this.apiKey}&language=fr-FR`
+        )
+        .then((response) => {
+          let movie = new MovieDetailed(
+            response.data.id,
+            response.data.title,
+            response.data.poster_path,
+            response.data.release_date,
+            response.data.vote_average,
+            response.data.overview,
+            response.data.genres,
+            response.data.budget,
+            response.data.original_language
+          );
+          resolve(movie);
         })
         .catch(function (error) {
           reject(error);
