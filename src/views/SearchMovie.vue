@@ -1,8 +1,13 @@
 <template>
-  <div id="structure">
-    <b-card no-body class="overflow-hidden">
+  <div>
+    <div :style="style"></div>
+    <b-card
+      no-body
+      class="overflow-hidden"
+      style="text-align: justify; padding-right: 2.5rem"
+    >
       <b-row no-gutters>
-        <b-col cols="4">
+        <b-col cols="5">
           <b-card-img
             :src="movie.poster"
             class="rounded-0"
@@ -10,7 +15,7 @@
             fluid
           ></b-card-img>
         </b-col>
-        <b-col cols="8">
+        <b-col cols="7">
           <b-card-body>
             <a :href="url">
               <b-card-title
@@ -25,6 +30,11 @@
             <b-card-text style="font-size: 1.1rem" class="mb-5">{{
               genres
             }}</b-card-text>
+
+            <div>
+              <b-form-rating v-model="ratingValue" class="mb-4"></b-form-rating>
+            </div>
+
             <b-card-sub-title>{{ localizedDate }}</b-card-sub-title>
           </b-card-body>
         </b-col>
@@ -44,6 +54,7 @@ export default {
   data() {
     return {
       movie: new MovieDetailed(),
+      ratingValue: 0,
     };
   },
   mounted() {
@@ -94,12 +105,14 @@ export default {
       return `https://www.themoviedb.org/movie/${this.movie.id}`;
     },
   },
+  watch: {
+    ratingValue: function (newValue) {
+      alert(
+        `Vous avez voté ${newValue} ${newValue != 1 ? "étoiles" : "étoile"}.`
+      );
+    },
+  },
 };
 </script>
 
-<style>
-#structure {
-  background-color: black;
-  text-align: justify;
-}
-</style>
+<style></style>

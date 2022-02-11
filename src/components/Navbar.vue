@@ -91,6 +91,8 @@ export default {
   },
   methods: {
     goToSearchResults() {
+      // To trigger the no results alert on the SearchResults vue.
+      this.searchQuery = this.searchQuery == "" ? " " : this.searchQuery;
       this.$router.push(`/search/${this.searchQuery}`);
     },
     submitUser() {

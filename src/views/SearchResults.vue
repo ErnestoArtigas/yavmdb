@@ -1,15 +1,22 @@
 <template>
-  <b-row class="mb-5">
-    <h1>Recherche : {{ searchQuery }}</h1>
-    <div class="grid">
-      <MovieCard
-        v-for="movie in moviesArray"
-        :key="movie.id"
-        :movie="movie"
-        style="margin-bottom: 15px"
-      ></MovieCard>
-    </div>
-  </b-row>
+  <div>
+    <b-row class="mb-5">
+      <h1>Recherche : {{ searchQuery }}</h1>
+      <b-alert v-if="hasSearchNoResults" show variant="danger"
+        >Nous n'avons trouvé de film pour votre recherche.</b-alert
+      >
+      <div v-else>
+        <div class="grid">
+          <MovieCard
+            v-for="movie in moviesArray"
+            :key="movie.id"
+            :movie="movie"
+            style="margin-bottom: 15px"
+          ></MovieCard>
+        </div>
+      </div>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -27,6 +34,7 @@ export default {
     return {
       searchQuery: "",
       moviesArray: [],
+      isSearchCompleted: false,
     };
   },
   mounted() {
@@ -36,9 +44,15 @@ export default {
       .then((data) => {
         this.moviesArray = data;
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        null;
       });
+    this.isSearchCompleted = true;
+  },
+  computed: {
+    hasSearchNoResults: function () {
+      return this.isSearchCompleted && this.moviesArray.length == 0;
+    },
   },
 };
 </script>

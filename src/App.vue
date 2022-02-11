@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar @emit:user="receiveUser" @disconnect:user="disconnectUser"></Navbar>
-    <b-container>
+    <b-container style="margin-top: 10px">
       <b-alert
         show
         v-show="isAlertVisible"
