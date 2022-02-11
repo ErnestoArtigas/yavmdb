@@ -63,8 +63,8 @@ export default {
       .then((data) => {
         this.movie = data;
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        null;
       });
   },
   computed: {

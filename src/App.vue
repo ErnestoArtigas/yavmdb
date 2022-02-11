@@ -34,20 +34,12 @@ export default {
     receiveUser(userFromNavbar) {
       this.user = userFromNavbar;
       this.isAlertVisible = true;
-      console.log(this.isAlertVisible);
-      setTimeout(
-        () => ((this.isAlertVisible = false), console.log(this.isAlertVisible)),
-        3000
-      );
+      setTimeout(() => (this.isAlertVisible = false), 3000);
     },
     disconnectUser() {
       this.user = null;
       this.isAlertVisible = true;
-      console.log(this.isAlertVisible);
-      setTimeout(
-        () => ((this.isAlertVisible = false), console.log(this.isAlertVisible)),
-        3000
-      );
+      setTimeout(() => (this.isAlertVisible = false), 3000);
     },
   },
 };
