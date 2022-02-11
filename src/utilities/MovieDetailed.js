@@ -17,7 +17,13 @@ export class MovieDetailed {
         : `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${poster}`;
     this.releaseDate = releaseDate == "" ? "Date Unknown" : releaseDate;
     this.overview = overview;
-    this.genres = genres;
+    try {
+      this.genres = genres.sort((a, b) =>
+        a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+      );
+    } catch (error) {
+      null;
+    }
     this.average = average;
     this.language = language;
   }

@@ -1,7 +1,17 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+    <Navbar @emit:user="receiveUser" @disconnect:user="disconnectUser"></Navbar>
     <b-container>
+      <b-alert
+        show
+        v-show="isAlertVisible"
+        v-if="user != null"
+        variant="success"
+        >{{ user }} est connecté.</b-alert
+      >
+      <b-alert show v-show="isAlertVisible" v-else variant="danger"
+        >Pas connecté.</b-alert
+      >
       <router-view :key="$route.fullPath" />
     </b-container>
   </div>
@@ -13,6 +23,32 @@ export default {
   name: "App",
   components: {
     Navbar,
+  },
+  data() {
+    return {
+      user: null,
+      isAlertVisible: false,
+    };
+  },
+  methods: {
+    receiveUser(userFromNavbar) {
+      this.user = userFromNavbar;
+      this.isAlertVisible = true;
+      console.log(this.isAlertVisible);
+      setTimeout(
+        () => ((this.isAlertVisible = false), console.log(this.isAlertVisible)),
+        3000
+      );
+    },
+    disconnectUser() {
+      this.user = null;
+      this.isAlertVisible = true;
+      console.log(this.isAlertVisible);
+      setTimeout(
+        () => ((this.isAlertVisible = false), console.log(this.isAlertVisible)),
+        3000
+      );
+    },
   },
 };
 </script>

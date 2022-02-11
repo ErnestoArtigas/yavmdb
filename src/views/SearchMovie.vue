@@ -3,15 +3,22 @@
     <b-card no-body class="overflow-hidden">
       <b-row no-gutters>
         <b-col cols="4">
-          <b-card-img :src="movie.poster" class="rounded-0"></b-card-img>
+          <b-card-img
+            :src="movie.poster"
+            class="rounded-0"
+            style="height: 100%; object-fit: cover"
+            fluid
+          ></b-card-img>
         </b-col>
         <b-col cols="8">
           <b-card-body>
-            <b-card-title
-              style="font-size: 2.5rem; text-align: center"
-              class="mb-4"
-              >{{ movie.title }}</b-card-title
-            >
+            <a :href="url">
+              <b-card-title
+                style="font-size: 2.5rem; text-align: center"
+                class="mb-4"
+                >{{ movie.title }}</b-card-title
+              >
+            </a>
             <b-card-text style="font-size: 1.2rem" class="mb-5">{{
               movie.overview
             }}</b-card-text>
@@ -82,6 +89,9 @@ export default {
         null;
       }
       return `${numberOfGenre} : ${genres}`;
+    },
+    url: function () {
+      return `https://www.themoviedb.org/movie/${this.movie.id}`;
     },
   },
 };
