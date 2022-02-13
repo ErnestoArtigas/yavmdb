@@ -3,7 +3,17 @@
 ## Description
 VueJS project of 2nd year of CS M.Sc.
 
+## Rapport
+The rapport is in the rapport.pdf file in the root of the project.
+
 ## Project setup
+
+### File to create
+
+.env
+```
+VUE_APP_AUTH_KEY_V3 = 33da563807ef7bb066ebb41b281c9a3e
+```
 
 ### Access through the hosted version
 https://yavmdb.ernart.com
